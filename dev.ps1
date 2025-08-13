@@ -1,11 +1,11 @@
-$csproj = ".\WinUIExample\WinUIExample.csproj"
-$appName = "WinUIExample"
+$csproj = ".\Nazuna\Nazuna.csproj"
+$appName = "Nazuna"
 $publisher = "ひかり"
-$execFile = "WinUIExample.exe"
+$execFile = "Nazuna.exe"
 $version = (Get-Date).ToString("yy.M.d")
 $date = (Get-Date).ToString("yyyyMMdd")
-$publishDir = "WinUIExample\publish"
-$muiIcon = "WinUIExample\Assets\App.ico"
+$publishDir = "Nazuna\publish"
+$muiIcon = "Nazuna\Assets\App.ico"
 
 $startMenuPath = [Environment]::GetFolderPath("Programs")
 
