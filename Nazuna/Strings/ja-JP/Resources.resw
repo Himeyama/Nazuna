@@ -22,14 +22,14 @@
   <data name="CancelText.Text" xml:space="preserve"><value>キャンセル</value></data>
   <data name="ZoomInText.Text" xml:space="preserve"><value>Ctrl + プラス記号 (+)</value></data>
   <data name="ZoomOutText.Text" xml:space="preserve"><value>Ctrl + マイナス記号 (-)</value></data>
-  <data name="AppTitleText.Text" xml:space="preserve"><value>アプリタイトル</value></data>
+  <data name="AppTitleText.Text" xml:space="preserve"><value></value></data>
   <data name="UsernameTextBox.Header" xml:space="preserve"><value>ユーザー名</value></data>
   <data name="UsernameTextBox.PlaceholderText" xml:space="preserve"><value>ユーザー名を入力してください</value></data>
   <data name="PasswordBox.Header" xml:space="preserve"><value>パスワード</value></data>
   <data name="PasswordBox.PlaceholderText" xml:space="preserve"><value>パスワードを入力してください</value></data>
   <data name="LoginButton.Text" xml:space="preserve"><value>ログイン</value></data>
-  <data name="UploadButton.Text" xml:space="preserve"><value>アップロード</value></data>
-  <data name="DownloadButton.Text" xml:space="preserve"><value>ダウンロード</value></data>
-  <data name="DeleteButton.Text" xml:space="preserve"><value>削除</value></data>
-  <data name="LogoutButton.Text" xml:space="preserve"><value>ログアウト</value></data>
+  <data name="UploadButton.Label" xml:space="preserve"><value>アップロード</value></data>
+  <data name="DownloadButton.Label" xml:space="preserve"><value>ダウンロード</value></data>
+  <data name="DeleteButton.Label" xml:space="preserve"><value>削除</value></data>
+  <data name="LogoutButton.Label" xml:space="preserve"><value>ログアウト</value></data>
 </root>

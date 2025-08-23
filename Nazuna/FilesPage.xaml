@@ -7,27 +7,45 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid RowDefinitions="Auto, *">
-        <Grid ColumnDefinitions="Auto, Auto, Auto, *, Auto">
+        <!-- <Grid ColumnDefinitions="Auto, Auto, Auto, *, Auto">
             <Button Margin="8, 0, 0, 0" Background="Transparent" BorderBrush="Transparent">
                 <TextBlock Text="Upload" x:Uid="UploadButton" />
             </Button>
-            <Button Grid.Column="1" Margin="8, 0, 0, 0" Background="Transparent" BorderBrush="Transparent">
-                <TextBlock Text="Download" x:Uid="DownloadButton" />
+            <Button Grid.Column="1" Margin="8, 0, 0, 0" Background="Transparent" BorderBrush="Transparent" Click="Download" IsEnabled="False" Name="DownloadButton">
+                <TextBlock Text="Download" x:Uid="DownloadButton"/>
             </Button>
-            <Button Grid.Column="2" Margin="8, 0, 0, 0" Background="Transparent" BorderBrush="Transparent">
+            <Button Grid.Column="2" Margin="8, 0, 0, 0" Background="Transparent" BorderBrush="Transparent" IsEnabled="False" Name="DeleteButton">
                 <TextBlock Text="Delete" x:Uid="DeleteButton" />
             </Button>
             <Button Grid.Column="4" Margin="0, 0, 8, 0" Background="Transparent" BorderBrush="Transparent" Click="Logout">
                 <TextBlock Text="Logout" x:Uid="LogoutButton" />
             </Button>
+        </Grid> -->
+        <!-- <CommandBar DefaultLabelPosition="Right">
+            <AppBarButton Icon="Upload" x:Uid="UploadButton" Label="Upload" />
+            <AppBarButton Icon="Download" x:Uid="DownloadButton" Label="Download" Name="DownloadButton" IsEnabled="False" />
+            <AppBarButton Icon="Delete" x:Uid="DeleteButton" Label="Delete" Name="DeleteButton" IsEnabled="False" />
+            <AppBarButton x:Uid="LogoutButton" Label="Logout" Click="Logout">
+                <FontIcon Glyph="&#xF3B1;" />
+            </AppBarButton>
+        </CommandBar> -->
+
+        <Grid ColumnDefinitions="Auto, Auto, Auto, *, Auto" Margin="8, 0, 8, 0">
+            <AppBarButton Grid.Column="0" Icon="Upload" x:Uid="UploadButton" Label="Upload" Click="Upload" />
+            <AppBarButton Grid.Column="1" Icon="Download" x:Uid="DownloadButton" Label="Download" Name="DownloadButton" IsEnabled="False" Click="Download" />
+            <AppBarButton Grid.Column="2" Icon="Delete" x:Uid="DeleteButton" Label="Delete" Name="DeleteButton" IsEnabled="False" Click="Delete" />
+            <AppBarButton Grid.Column="4" x:Uid="LogoutButton" Label="Logout" Click="Logout">
+                <FontIcon Glyph="&#xF3B1;" />
+            </AppBarButton>
         </Grid>
-        <ListView Grid.Row="1" Name="Files" Margin="8">
+
+        <ListView Grid.Row="1" Name="Files" Margin="8" ItemClick="Clicked" IsItemClickEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:FileInfo">
-                    <Grid Margin="0, 8, 0, 8" ColumnDefinitions="*, Auto, Auto">
+                    <Grid Margin="0, 8, 0, 8" ColumnDefinitions="*, Auto, 96">
                         <TextBlock Text="{x:Bind FileName}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
-                        <TextBlock Grid.Column="1" Margin="16, 0, 0, 0" Text="{x:Bind LastModified}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
-                        <TextBlock Grid.Column="2" Margin="16, 0, 0, 0" Text="{x:Bind Size}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+                        <TextBlock Grid.Column="1" Margin="16, 0, 0, 0" Text="{x:Bind LastModifiedText}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+                        <TextBlock Grid.Column="2" Margin="16, 0, 0, 0" Text="{x:Bind FileSize}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -82,15 +82,7 @@ public sealed partial class LoginPage : Page
         });
     }
 
-    void Debug(string message)
-    {
-        string debugFile = "debug.txt";
-        if (System.IO.File.Exists(debugFile))
-        {
-            string log = $"{System.DateTime.Now:yyyy-MM-dd HH:mm:ss} {message}{System.Environment.NewLine}";
-            System.IO.File.AppendAllText(debugFile, log);
-        }
-    }
+    void Debug(object message) => MainWindow.Debug(message);
 
     void SetUsername(string username)
     {
