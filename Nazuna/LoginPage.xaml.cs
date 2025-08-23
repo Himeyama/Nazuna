@@ -61,21 +61,11 @@ public sealed partial class LoginPage : Page
         if (e.Parameter is MainWindow window)
             mainWindow = window;
 
-        // 例外を捕捉する非同期メソッドを await する
-        // DispatcherQueue.TryEnqueue(async () =>
-        // {
-        //     string auth = await TryAuthAsync();
-        //     // Debug(auth);
-        //     Debug($"{DispatcherQueue.HasThreadAccess}");
-        //     if (!string.IsNullOrWhiteSpace(auth))
-        //     {
-        //         await ShowError(auth);
-        //         return;
-        //     }
-        // });
         Task.Run(async () =>
         {
+            DispatcherQueue.TryEnqueue(() => mainWindow.Progress(true));
             string auth = await TryAuthAsync();
+            DispatcherQueue.TryEnqueue(() => mainWindow.Progress(false));
             Debug(auth);
             if (string.IsNullOrWhiteSpace(auth) && mainWindow != null)
                 DispatcherQueue.TryEnqueue(() => mainWindow.ContentFrame.Navigate(typeof(FilesPage), mainWindow, new DrillInNavigationTransitionInfo()));
@@ -133,15 +123,31 @@ public sealed partial class LoginPage : Page
     {
         if (e.Key == VirtualKey.Enter)
         {
-            try { await TryLoginAsync(); }
-            catch (Exception ex) { await ShowError($"Login error: {ex.Message}"); }
+            mainWindow.Progress(true);
+            try
+            {
+                await TryLoginAsync();
+            }
+            catch (Exception ex)
+            {
+                await ShowError($"Login error: {ex.Message}");
+            }
+            mainWindow.Progress(false);
         }
     }
 
     public async void Login(object sender, RoutedEventArgs e)
     {
-        try { await TryLoginAsync(); }
-        catch (Exception ex) { await ShowError($"Login error: {ex.Message}"); }
+        mainWindow.Progress(true);
+        try
+        {
+            await TryLoginAsync();
+        }
+        catch (Exception ex)
+        {
+            await ShowError($"Login error: {ex.Message}");
+        }
+        mainWindow.Progress(false);
     }
 
     async Task<string> TryAuthAsync()
@@ -153,7 +159,6 @@ public sealed partial class LoginPage : Page
         }
         catch (Exception ex)
         {
-            // UI スレッドでダイアログ表示（例外をユーザーに知らせる）
             return $"Auth error: {ex.Message}";
         }
     }

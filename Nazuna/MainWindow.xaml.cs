@@ -17,6 +17,11 @@ public sealed partial class MainWindow : Window
 
         ContentFrame.Navigate(typeof(LoginPage), this, new DrillInNavigationTransitionInfo());
     }
+
+    public void Progress(bool isEnabled)
+    {
+        ProgressBar.Visibility = isEnabled ? Visibility.Visible : Visibility.Collapsed;
+    }
     
     public static void Debug(object message)
     {

@@ -207,6 +207,7 @@ public sealed partial class FilesPage : Page
 
     async void Download(object sender, RoutedEventArgs e)
     {
+        DispatcherQueue.TryEnqueue(() => mainWindow.Progress(true));
         if (Files.SelectedItem is FileInfo fileInfo)
         {
             string fileName = fileInfo.FileName;
@@ -238,10 +239,12 @@ public sealed partial class FilesPage : Page
                 Debug("Failed to get download link.");
             }
         }
+        DispatcherQueue.TryEnqueue(() => mainWindow.Progress(false));
     }
 
     async void Delete(object sender, RoutedEventArgs e)
     {
+        DispatcherQueue.TryEnqueue(() => mainWindow.Progress(true));
         string token = Data.Get("Token");
         string username = Data.Get("Username");
 
@@ -258,6 +261,8 @@ public sealed partial class FilesPage : Page
                 {
                     Debug($"Deleted: {fileName}");
                     await GetFiles();
+                    DownloadButton.IsEnabled = false;
+                    DeleteButton.IsEnabled = false;
                 }
                 else
                 {
@@ -269,6 +274,7 @@ public sealed partial class FilesPage : Page
                 Debug($"Delete error: {ex.Message}");
             }
         }
+        DispatcherQueue.TryEnqueue(() => mainWindow.Progress(false));
     }
 
     async Task<string> GetUploadUrl(string fileName)
@@ -325,6 +331,7 @@ public sealed partial class FilesPage : Page
             return;
         }
 
+        DispatcherQueue.TryEnqueue(() => mainWindow.Progress(true));
         string uploadUrl = await GetUploadUrl(file.Name);
         Debug(uploadUrl);
         if (uploadUrl != null)
@@ -360,6 +367,7 @@ public sealed partial class FilesPage : Page
         {
             Debug("Failed to get upload URL.");
         }
+        DispatcherQueue.TryEnqueue(() => mainWindow.Progress(false));
     }
 
     void Clicked(object sender, RoutedEventArgs e)

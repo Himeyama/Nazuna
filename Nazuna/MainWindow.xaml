@@ -14,7 +14,7 @@
         <DesktopAcrylicBackdrop />
     </Window.SystemBackdrop> -->
     <Grid
-        RowDefinitions="40, *" x:Name="Window">
+        RowDefinitions="40, 2, *" x:Name="Window">
         <Grid Grid.Row="0">
             <Grid x:Name="AppTitleBar" Grid.Column="1" />
             <TextBlock x:Name="AppTitleTextBlock"
@@ -24,7 +24,9 @@
                 HorizontalAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Row="1">
+        <ProgressBar Name="ProgressBar" Visibility="Collapsed" Grid.Row="1" IsIndeterminate="True" HorizontalAlignment="Stretch" />
+
+        <Grid Grid.Row="2">
             <Frame Name="ContentFrame" x:FieldModifier="public">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
